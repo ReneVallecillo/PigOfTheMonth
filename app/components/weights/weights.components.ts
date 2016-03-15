@@ -1,4 +1,6 @@
-import { Component} from 'angular2/core';
+import { Component, OnInit} from 'angular2/core';
+import {Person} from '../../models/models';
+import {PeopleService} from '../../services/persons/person.service';
 
 @Component({
     selector: 'weights',
@@ -9,6 +11,24 @@ import { Component} from 'angular2/core';
     pipes: []
 })
 
-export class WeightsComponent {
+export class WeightsComponent implements OnInit{
   months: string[] = moment.monthsShort();
+  date: Date = new Date();
+  people: Person[];
+
+  constructor(private peopleService: PeopleService){
+
+  }
+
+  ngOnInit(){
+    this.get(this.date);
+  }
+
+  get(date: Date){
+    this.peopleService.get(date)
+    .subscribe((people) => {
+      this.people = people;
+    });
+  }
+
 }
