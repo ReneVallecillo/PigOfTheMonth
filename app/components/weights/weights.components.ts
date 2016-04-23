@@ -1,6 +1,6 @@
 import { Component, OnInit} from 'angular2/core';
 import {Person} from '../../models/models';
-import {PeopleService} from '../../services/persons/person.service';
+import {PeopleService} from '../../services/people/person.service';
 
 @Component({
     selector: 'weights',
